@@ -1,0 +1,6 @@
+-e .
+boto3
+botocore
+docker
+ask-sdk-core>=1.4.0
+pytest

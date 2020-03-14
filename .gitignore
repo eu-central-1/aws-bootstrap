@@ -1,0 +1,22 @@
+# Ignore IntelliJ IDEA project settings
+.idea
+# Ignore virtualenv working dir
+.env
+# Ignore lambda package build dir
+.build
+# Ignore lambda package assets dir
+.assets
+# Ignore pytest cache dir
+.pytest_cache
+# Ignore cdk.out working dir
+cdk.out
+
+# Ignore pycache
+**/__pycache__
+# Ignore *.pyc and *.pyo
+**/*.py[co]
+# Ignore *.egg-info
+**/*.egg-info
+
+# Ignore user.json for security
+user.json
