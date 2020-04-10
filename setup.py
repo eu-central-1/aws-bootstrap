@@ -4,7 +4,7 @@ with open("README.md") as fp:
       long_description = fp.read()
 
 setuptools.setup(
-      name="aws_multiaccount_setup",
+      name="aws-bootstrap-multiaccount",
       version="0.0.1",
 
       description="Python AWS CDK for Setup Initial Payer Account for MultiAccount Environment",
