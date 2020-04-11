@@ -2,7 +2,7 @@
 
 from aws_cdk import core
 
-from cdk_stack.aws_multiaccount_setup.init_stack import InitStack
+from aws_bootstrap_multiaccount.init_stack import InitStack
 
 app = core.App()
 InitStack(app, "aws-bootstrap-multiaccount")

@@ -7,8 +7,8 @@ import docker
 import pytest
 import requests
 
-from cdk_stack.aws_lambda_asset import zip_asset_code
-from cdk_stack.aws_lambda_asset.zip_asset_code import LambdaPackaging, ZipAssetCode
+from aws_lambda_asset import zip_asset_code
+from aws_lambda_asset.zip_asset_code import LambdaPackaging, ZipAssetCode
 
 
 def prepare_workspace(path: Path) -> Path:

@@ -1,7 +1,7 @@
 Python AWS CDK for setup Payer Account with MultiAccount Environments
 =========
 
-This is a Python project, for setup initial Payer Account for MultiAccount Environments.
+This is a Python project, for bootstrapping initial Payer Account for MultiAccount Environments.
 
 ## How it Works
 
