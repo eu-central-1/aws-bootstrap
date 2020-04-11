@@ -7,7 +7,7 @@ setuptools.setup(
       name="aws-bootstrap-multiaccount",
       version="0.0.1",
 
-      description="Python AWS CDK for Setup Initial Payer Account for MultiAccount Environment",
+      description="Python AWS CDK for bootstrapping initial payer account for multi-account environment",
       long_description=long_description,
       long_description_content_type="text/markdown",
 
@@ -17,10 +17,9 @@ setuptools.setup(
       packages=setuptools.find_packages(where="src/cdk_stack"),
 
       install_requires=[
-            "aws-cdk.core",
+            "aws-cdk.core==1.32.2",
             "aws-cdk.aws_iam",
             "aws-cdk.aws_lambda",
-            "poetry>=1.0.0b1",
       ],
 
       python_requires=">=3.6",

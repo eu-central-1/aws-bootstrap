@@ -3,7 +3,7 @@ from aws_cdk import (
     aws_lambda,
     core,
 )
-from cdk_stack.aws_lambda_asset.zip_asset_code import ZipAssetCode
+from aws_lambda_asset.zip_asset_code import ZipAssetCode
 
 class AlexaConstruct(core.Construct):
 

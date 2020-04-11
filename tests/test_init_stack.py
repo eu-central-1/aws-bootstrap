@@ -1,7 +1,7 @@
 import unittest
 
 from aws_cdk import core
-from cdk_stack.aws_multiaccount_setup.init_alexacloud_skill import AlexaConstruct
+from aws_bootstrap_multiaccount.init_alexacloud_skill import AlexaConstruct
 
 class TestAlexaConstruct(unittest.TestCase):
 

@@ -8,7 +8,8 @@
 .assets
 # Ignore pytest cache dir
 .pytest_cache
-# Ignore cdk.out working dir
+# CDK asset staging directory
+.cdk.staging
 cdk.out
 
 # Ignore pycache
@@ -18,5 +19,10 @@ cdk.out
 # Ignore *.egg-info
 **/*.egg-info
 
+# Ignore npm package dir and lock
+node_modules/
+package-lock.json
+
 # Ignore user.json for security
 user.json
+

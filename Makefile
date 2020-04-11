@@ -26,13 +26,13 @@ export PATH := ${VIRTUAL_ENV}/bin:${PATH}
 
 ${VENV}:
 	python3 -m venv $@
+	@source ${VENV}/bin/activate
 
 ${AWS_CDK}:
 	npm install -g aws-cdk
 	@cdk --version
 
 install: requirements.txt ${VENV} ${AWS_CDK}
-	source ${VENV}/bin/activate
 	pip3 install -r requirements.txt
 
 tests: tests/test_*.py
