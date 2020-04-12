@@ -95,7 +95,7 @@ class LambdaPackaging:
         client = docker.from_env()
         client.containers.run(
             image='lambci/lambda:build-python3.7',
-            command="/bin/sh -c 'python3.7 -m pip install --target /var/task/ --requirement /var/task/requirements.txt && "
+            command="/bin/sh -c 'python3 -m pip install --target /var/task/ --requirement /var/task/requirements.txt && "
                     "find /var/task -name \\*.so -exec strip \\{{\\}} \\;'",
             remove=True,
             volumes={
@@ -114,7 +114,7 @@ class LambdaPackaging:
         print('Installing dependencies [running on Linux]...')
         req = self.requirements_dir / 'requirements.txt'
         if os.system(
-                f"/bin/sh -c 'python3.7 -m pip install --target {self.requirements_dir} --requirement {req} && "
+                f"/bin/sh -c 'python3 -m pip install --target {self.requirements_dir} --requirement {req} && "
                 f"find {self.requirements_dir} -name \\*.so -exec strip \\{{\\}} \\;'"
         ) != 0:
             raise Exception('Error running build in Docker. Make sure Docker daemon is running on your machine.')
