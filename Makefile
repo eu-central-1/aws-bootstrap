@@ -19,26 +19,27 @@ export PROJECT_HELP_MSG
 help:
 	@echo -e $$PROJECT_HELP_MSG | less
 
-VENV = .env
+VENV = .venv
 AWS_CDK := $(or $(realpath $(shell command -v cdk)),cdk)
 export VIRTUAL_ENV := $(abspath ${VENV})
 export PATH := ${VIRTUAL_ENV}/bin:${PATH}
 
 ${VENV}:
-	python3 -m venv $@
-	@source ${VENV}/bin/activate
+	test -d $@ || python3 -m venv $@
+	echo Please run: source ${VENV}/bin/activate
 
 ${AWS_CDK}:
 	npm install -g aws-cdk
 	@cdk --version
 
 install: requirements.txt ${VENV} ${AWS_CDK}
-	pip3 install -r requirements.txt
+	. ${VENV}/bin/activate && pip3 install -r requirements.txt
 
 tests: tests/test_*.py
 	pytest -vv tests
 
 clean:
+	rm -rf ${VENV}
 	find . -type f -name "*.py[co]" -delete
 	find . -type d -name "__pycache__" -delete
 

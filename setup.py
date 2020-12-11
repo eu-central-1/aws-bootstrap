@@ -1,45 +1,45 @@
 import setuptools
 
 with open("README.md") as fp:
-      long_description = fp.read()
+    long_description = fp.read()
 
 setuptools.setup(
-      name="aws-bootstrap-multiaccount",
-      version="0.0.1",
+    name="aws-bootstrap",
+    version="0.0.1",
 
-      description="Python AWS CDK for bootstrapping initial payer account for multi-account environment",
-      long_description=long_description,
-      long_description_content_type="text/markdown",
+    description="Python AWS CDK for bootstrapping initial payer account for multi-account environment",
+    long_description=long_description,
+    long_description_content_type="text/markdown",
 
-      author="bitbauer@outlook.com",
+    author="4582513+bitbauer@users.noreply.github.com",
 
-      package_dir={"": "src/cdk_stack"},
-      packages=setuptools.find_packages(where="src/cdk_stack"),
+    package_dir={"": "src/cdk_stack"},
+    packages=setuptools.find_packages(where="src/cdk_stack"),
 
-      install_requires=[
-            "aws-cdk.core==1.32.2",
-            "aws-cdk.aws_iam",
-            "aws-cdk.aws_lambda",
-      ],
+    install_requires=[
+        "aws-cdk.core==1.77.0",
+        "aws-cdk.aws_iam",
+        "aws-cdk.aws_lambda"
+    ],
 
-      python_requires=">=3.6",
+    python_requires=">=3.8",
 
-      classifiers=[
-            "Development Status :: 4 - Beta",
+    classifiers=[
+        "Development Status :: 4 - Beta",
 
-            "Intended Audience :: Developers",
+        "Intended Audience :: Developers",
 
-            "License :: OSI Approved :: MIT License",
+        "License :: OSI Approved :: MIT License",
 
-            "Programming Language :: JavaScript",
-            "Programming Language :: Python :: 3 :: Only",
-            "Programming Language :: Python :: 3.6",
-            "Programming Language :: Python :: 3.7",
-            "Programming Language :: Python :: 3.8",
+        "Programming Language :: JavaScript",
+        "Programming Language :: Python :: 3 :: Only",
+        "Programming Language :: Python :: 3.6",
+        "Programming Language :: Python :: 3.7",
+        "Programming Language :: Python :: 3.8",
 
-            "Topic :: Software Development :: Code Generators",
-            "Topic :: Utilities",
+        "Topic :: Software Development :: Code Generators",
+        "Topic :: Utilities",
 
-            "Typing :: Typed",
-      ],
+        "Typing :: Typed",
+    ],
 )

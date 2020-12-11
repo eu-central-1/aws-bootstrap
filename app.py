@@ -2,9 +2,8 @@
 
 from aws_cdk import core
 
-from aws_bootstrap_multiaccount.init_stack import InitStack
+from aws_bootstrap.init_stack import InitStack
 
 app = core.App()
-InitStack(app, "aws-bootstrap-multiaccount")
-
+InitStack(app, "aws-bootstrap")
 app.synth()
