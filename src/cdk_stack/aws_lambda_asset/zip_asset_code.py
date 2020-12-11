@@ -94,7 +94,7 @@ class LambdaPackaging:
         print('Installing dependencies [running in Docker]...')
         client = docker.from_env()
         client.containers.run(
-            image='lambci/lambda:build-python3.7',
+            image='lambci/lambda:build-python3.8',
             command="/bin/sh -c 'python3 -m pip install --target /var/task/ --requirement /var/task/requirements.txt && "
                     "find /var/task -name \\*.so -exec strip \\{{\\}} \\;'",
             remove=True,

@@ -1,7 +1,7 @@
 # Ignore IntelliJ IDEA project settings
 .idea
 # Ignore virtualenv working dir
-.env
+.venv
 # Ignore lambda package build dir
 .build
 # Ignore lambda package assets dir
