@@ -29,7 +29,7 @@ ${VENV}:
 	echo Please run: source ${VENV}/bin/activate
 
 ${AWS_CDK}:
-	npm install -g aws-cdk
+	sudo npm install -g aws-cdk
 	@cdk --version
 
 install: requirements.txt ${VENV} ${AWS_CDK}
