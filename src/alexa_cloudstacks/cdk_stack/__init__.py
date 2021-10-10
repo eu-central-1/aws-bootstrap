@@ -1,16 +1,15 @@
-from aws_cdk import (
-    core
-)
+# For consistency with other languages, `cdk` is the preferred import name
+from aws_cdk import core as cdk
 
-from .init_cloudstacks_skill import AlexaConstruct
+from .alexa_construct import AlexaConstruct
 
 
-class InitStack(core.Stack):
+class AlexaCloudstacksStack(cdk.Stack):
 
-    def __init__(self, scope: core.Construct, id: str, **kwargs) -> None:
+    def __init__(self, scope: cdk.Construct, id: str, **kwargs) -> None:
         super().__init__(scope, id, **kwargs)
 
-        skill_id = core.CfnParameter(
+        skill_id = cdk.CfnParameter(
             self,
             id="skill",
             type="String",

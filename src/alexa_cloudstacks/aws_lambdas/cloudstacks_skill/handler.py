@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-import logging
+import os
 from typing import Optional
 
 import boto3
@@ -11,6 +11,10 @@ from ask_sdk_core.handler_input import HandlerInput
 from ask_sdk_model import Response, SessionEndedRequest
 from ask_sdk_model.ui import SimpleCard
 
+from aws_lambda_powertools import Logger
+
+logger = Logger(service=os.environ['POWERTOOLS_SERVICE_NAME'])
+
 MY = 'a. w. s. cloud stacks'
 FACTS = 'Deine AWS <lang xml:lang="en-US">cloud stacks</lang> haben folgenden Status: '
 NODATA = 'Du hast momentan keine AWS <lang xml:lang="en-US">cloud stacks</lang>.'
@@ -20,10 +24,8 @@ FALLBACK = '{} {}'.format(EXCEPTION, HELP)
 REPROMPT = 'Wie kann ich dir helfen?'
 STOP = 'Und tschüss.'
 
+# @logger.inject_lambda_context
 sb = SkillBuilder()
-log = logging.getLogger(__name__)
-log.setLevel(logging.DEBUG)
-
 
 # TODO: Uncomment the following lines of code for request logs
 @sb.global_request_interceptor()
@@ -39,16 +41,16 @@ def response_logger(handler_input: HandlerInput, response: Response):
 
 def get_speech_and_card():
     ec2 = boto3.client('ec2')
-    log.debug("At Describe Regions")
+    logger.debug("At Describe Regions")
     regions = ec2.describe_regions()['Regions']
     data = []
     counters = {}
     for region in regions:
-        log.debug("At Init Cloudformation")
+        logger.debug("At Init Cloudformation")
         client = boto3.client('cloudformation', region_name=region['RegionName'])
-        log.debug("At Start Cloudformation")
+        logger.debug("At Start Cloudformation")
         stacks = client.list_stacks()['StackSummaries']
-        log.debug("At Listed Stacks")
+        logger.debug("At Listed Stacks")
         for i in stacks:
             if i['StackStatus'] == 'DELETE_COMPLETE':
                 continue
@@ -59,38 +61,38 @@ def get_speech_and_card():
             counters[region['RegionName']] = counters[region['RegionName']] = 1
             status = i['StackStatus'].lower().replace('_', ' ')
             data.append('Stack {} ist im Status <lang xml:lang="en-US">{}</lang>.'.format(i['StackName'], status))
-    log.debug("At Data collected")
+    logger.debug("At Data collected")
     return [FACTS + " ".join(data) if data else NODATA, "\n".join(data)]
 
 
 @sb.request_handler(can_handle_func=is_intent_name("LaunchRequest"))
 def launch_request_handler(handler_input: HandlerInput):
-    log.info("In LaunchRequestHandler")
+    logger.info("In LaunchRequestHandler")
     result = get_speech_and_card()
-    log.info("In LaunchRequestHandler Build")
+    logger.info("In LaunchRequestHandler Build")
     handler_input.response_builder.speak(result[0]) \
         .set_card(SimpleCard(MY, result[1])) \
         .set_should_end_session(False)
-    log.info("In LaunchRequestHandler Respond")
+    logger.info("In LaunchRequestHandler Respond")
     return handler_input.response_builder.response
 
 
 @sb.request_handler(can_handle_func=is_intent_name("GetNewFactHandler"))
 def get_new_fact_handler(handler_input: HandlerInput):
-    log.info("In GetNewFactHandler")
+    logger.info("In GetNewFactHandler")
     result = get_speech_and_card()
-    log.info("In GetNewFactHandler Build")
+    logger.info("In GetNewFactHandler Build")
     handler_input.response_builder.speak(result[0]) \
         .set_card(SimpleCard(MY, result[1])) \
         .set_should_end_session(True)
-    log.info("In GetNewFactHandler Respond")
+    logger.info("In GetNewFactHandler Respond")
     return handler_input.response_builder.response
 
 
 # Built-in Intent Handlers
 @sb.request_handler(can_handle_func=is_intent_name("AMAZON.HelpIntent"))
 def help_intent_handler(handler_input: HandlerInput):
-    log.info("In HelpIntentHandler")
+    logger.info("In HelpIntentHandler")
     handler_input.response_builder.speak(HELP).ask(REPROMPT).set_card(SimpleCard(MY, HELP))
     return handler_input.response_builder.response
 
@@ -98,24 +100,24 @@ def help_intent_handler(handler_input: HandlerInput):
 @sb.request_handler(
     can_handle_func=lambda handler_input: is_intent_name("AMAZON.CancelIntent")(handler_input) or is_intent_name("AMAZON.StopIntent")(handler_input))
 def cancel_and_stop_intent_handler(handler_input: HandlerInput):
-    log.info("In CancelOrStopIntentHandler")
+    logger.info("In CancelOrStopIntentHandler")
     handler_input.response_builder.speak(STOP)
     return handler_input.response_builder.response
 
 
 @sb.request_handler(can_handle_func=is_request_type("SessionEndedRequest"))
 def session_ended_request_handler(handler_input: HandlerInput):
-    log.info("In SessionEndedRequestHandler")
+    logger.info("In SessionEndedRequestHandler")
     request: Optional[SessionEndedRequest] = handler_input.request_envelope.request
     reason = "Request is None" if (request is None) else request.reason
-    log.info("Session ended reason: {}".format(reason))
+    logger.info("Session ended reason: {}".format(reason))
     return handler_input.response_builder.response
 
 
 @sb.exception_handler(can_handle_func=lambda i, e: True)
 def all_exception_handler(handler_input: HandlerInput, exception: Exception):
-    log.info("In CatchAllExceptionHandler")
-    log.error(exception, exc_info=True)
+    logger.info("In CatchAllExceptionHandler")
+    logger.error(exception, exc_info=True)
     handler_input.response_builder.speak(EXCEPTION).ask(REPROMPT)
     return handler_input.response_builder.response
 
