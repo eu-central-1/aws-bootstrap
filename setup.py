@@ -20,6 +20,8 @@ setuptools.setup(
         f"{x}==1.127.0" for x in
         [
             'aws-cdk.core',
+            'aws-cdk.alexa-ask',
+            'aws-cdk.aws-s3-assets',
             'aws-cdk.aws-iam',
             'aws-cdk.aws-lambda',
             'aws-cdk.aws-lambda-python',
