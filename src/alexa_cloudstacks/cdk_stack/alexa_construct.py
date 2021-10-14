@@ -2,6 +2,8 @@
 from aws_cdk import core as cdk
 from aws_cdk import (
     aws_iam,
+    alexa_ask,
+    aws_s3_assets,
     aws_lambda,
     aws_lambda_python,
     aws_logs,
@@ -18,6 +20,30 @@ class AlexaConstruct(cdk.Construct):
 
     def __init__(self, app: cdk.App, id: str, skill_id: str) -> None:
         super().__init__(app, id)
+
+        self._skillasset = aws_s3_assets.Asset(
+            scope=self,
+            id='SkillAsset',
+            path='./src/alexa_cloudstacks/assets/cloudstack_skill',
+        )
+
+        self._skillauth = alexa_ask.CfnSkill.AuthenticationConfigurationProperty(
+            client_id = self.node.try_get_context('amazon-developer:login'),
+            client_secret = self.node.try_get_context('amazon-developer:oauth-token'),
+        )
+
+        self._skillpackage = alexa_ask.CfnSkill.SkillPackageProperty(
+            s3_bucket=self._skillasset.s3_bucket_name,
+            s3_key=self._skillasset.s3_object_key,
+        )
+
+        self._skill = alexa_ask.CfnSkill(
+            scope=self,
+            id='Skill',
+            authentication_configuration=self._skillauth,
+            skill_package=self._skillpackage,
+            # vendor_id='bitbauer.net',
+        )
 
         # Skill lambda function
         self._function = aws_lambda_python.PythonFunction(
