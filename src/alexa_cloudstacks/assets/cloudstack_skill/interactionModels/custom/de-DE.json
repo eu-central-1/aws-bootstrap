@@ -1,0 +1,59 @@
+{
+  "interactionModel": {
+    "languageModel": {
+      "invocationName": "a. w. s. cloud stacks",
+      "intents": [
+        {
+          "name": "AMAZON.CancelIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.HelpIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.StopIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.NavigateHomeIntent",
+          "samples": []
+        },
+        {
+          "name": "GetNewFactHandler",
+          "slots": [],
+          "samples": [
+            "Sage mir den Status meiner Cloud Formation Stacks",
+            "Sage mir den Status der Cloud Formation Stacks",
+            "Sage mir den Status meiner Cloud Stacks",
+            "Sage mir den Status der Cloud Stacks",
+            "Sage mir den Status meiner AWS Cloud Formation Stacks",
+            "Sage mir den Status der AWS Cloud Formation Stacks",
+            "Sage mir den Status meiner AWS Cloud Stacks",
+            "Sage mir den Status der AWS Cloud Stacks",
+            "Sage mir den Status meiner AWS Stacks",
+            "Sage mir den Status der AWS Stacks",
+            "Sage mir den Status meiner Stacks",
+            "Sage mir den Status der Stacks",
+            "Sage mir den Status",
+            "Wie ist mein Cloud Formation Status",
+            "Wie ist der Cloud Formation Status",
+            "Wie ist mein Cloud Status",
+            "Wie ist der Cloud Status",
+            "Wie ist mein AWS Cloud Formation Status",
+            "Wie ist der AWS Cloud Formation Status",
+            "Wie ist mein AWS Cloud Stack Status",
+            "Wie ist der AWS Cloud Stack Status",
+            "Wie ist mein AWS Status",
+            "Wie ist der AWS Status",
+            "Wie ist mein Status",
+            "Wie ist der Status",
+            "Status"
+          ]
+        }
+      ],
+      "types": []
+    }
+  },
+  "version": "1"
+}
