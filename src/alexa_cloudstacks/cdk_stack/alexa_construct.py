@@ -28,8 +28,9 @@ class AlexaConstruct(cdk.Construct):
         )
 
         self._skillauth = alexa_ask.CfnSkill.AuthenticationConfigurationProperty(
-            client_id = self.node.try_get_context('amazon-developer:login'),
-            client_secret = self.node.try_get_context('amazon-developer:oauth-token'),
+            client_id=self.node.try_get_context('amazon-developer-smapi:client-id'),
+            client_secret=self.node.try_get_context('amazon-developer-smapi:client-secret'),
+            refresh_token=self.node.try_get_context('amazon-developer-smapi:refresh-token'), 
         )
 
         self._skillpackage = alexa_ask.CfnSkill.SkillPackageProperty(
@@ -42,7 +43,7 @@ class AlexaConstruct(cdk.Construct):
             id='Skill',
             authentication_configuration=self._skillauth,
             skill_package=self._skillpackage,
-            # vendor_id='bitbauer.net',
+            vendor_id=self.node.try_get_context('amazon-developer-smapi:vendor-id'),
         )
 
         # Skill lambda function
