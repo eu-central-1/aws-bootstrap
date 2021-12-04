@@ -5,7 +5,7 @@ with open("README.md") as fp:
 
 setuptools.setup(
     name="aws-bootstrap",
-    version="0.1.0-alpha.0",
+    version="0.1.0",
 
     description="Python AWS CDK for bootstrapping initial payer account for multi-account environment",
     long_description=long_description,
