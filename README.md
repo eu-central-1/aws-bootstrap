@@ -41,10 +41,15 @@ At this point you can now synthesize the CloudFormation template for this code.
 $ cdk synth
 ```
 
+After this, use deploy command to deploy CloudFormation stack with related skill id parameter.
+```
+cdk deploy --parameters skill=amzn1.ask.skill.your-skill-guid-number
+```
+
 The `cdk.json` file tells the CDK Toolkit how to execute your app.
 For reference on AWS CDK visit: https://docs.aws.amazon.com/de_de/cdk
 
-### Useful commands
+### Useful CDK commands
 
  * `cdk ls`          list all stacks in the app
  * `cdk synth`       emits the synthesized CloudFormation template

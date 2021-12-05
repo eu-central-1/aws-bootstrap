@@ -27,6 +27,7 @@ class AlexaConstruct(core.Construct):
             ),
             handler='handler.handler',
             runtime=aws_lambda.Runtime.PYTHON_3_8,
+            memory_size=1024,
             timeout=core.Duration.seconds(30)
         )
 
