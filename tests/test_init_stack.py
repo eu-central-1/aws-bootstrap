@@ -10,5 +10,5 @@ class TestAlexaConstruct(unittest.TestCase):
         self.stack = core.Stack(self.app, "teststack")
 
     def test_alexa_function(self):
-        test_alexa_function = AlexaConstruct(self.stack, "testalexa")
+        test_alexa_function = AlexaConstruct(self.stack, "testalexa", skill_id="amzn1.ask.skill.your-skill-guid-number")
         assert test_alexa_function
