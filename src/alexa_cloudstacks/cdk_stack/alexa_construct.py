@@ -62,6 +62,7 @@ class AlexaConstruct(cdk.Construct):
             max_event_age=cdk.Duration.minutes(1),
             retry_attempts=0,
             runtime=aws_lambda.Runtime.PYTHON_3_8,
+            memory_size=1024,
             timeout=cdk.Duration.seconds(120),
             tracing=aws_lambda.Tracing.DISABLED,
         )
