@@ -22,6 +22,6 @@ app = cdk.App()
 for key in tags:
     cdk.Tag.add(app, key, tags[key])
 
-AlexaCloudstacksStack(app, 'Alexa-Cloudstack', env=env)
+AlexaCloudstacksStack(app, 'Alexa-Cloudstacks', env=env)
 
 app.synth()

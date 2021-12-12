@@ -1,7 +1,7 @@
 {
   "interactionModel": {
     "languageModel": {
-      "invocationName": "a. w. s. cloud stacks",
+      "invocationName": "a. w. s. cloud",
       "intents": [
         {
           "name": "AMAZON.CancelIntent",

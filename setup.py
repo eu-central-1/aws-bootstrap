@@ -23,6 +23,7 @@ setuptools.setup(
             'aws-cdk.alexa-ask',
             'aws-cdk.aws-s3-assets',
             'aws-cdk.aws-iam',
+            'aws-cdk.aws-kms',
             'aws-cdk.aws-lambda',
             'aws-cdk.aws-lambda-python',
         ]
