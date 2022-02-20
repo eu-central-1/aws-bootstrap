@@ -61,6 +61,8 @@ This CDK stack requires LWA credentials and further IDs for [Alexa Skill Kit](#a
 }
 ```
 
+CDK doesn't support [AWS SSO profiles](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-sso.html) in `~/.aws/config` file. As a workaround you can use [aws-sso-util](https://github.com/benkehoe/aws-sso-util)
+
 ### Amazon ASK
 
 It's required to install ASK CLI to deploy an Alexa Skill Model.

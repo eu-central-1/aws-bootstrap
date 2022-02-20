@@ -3,5 +3,4 @@ boto3
 botocore
 docker
 ask-sdk-core>=1.14.0
-aws2-wrap
 pytest
