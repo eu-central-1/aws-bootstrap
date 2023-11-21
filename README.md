@@ -49,6 +49,30 @@ cdk deploy --parameters skill=amzn1.ask.skill.your-skill-guid-number
 The `cdk.json` file tells the CDK Toolkit how to execute your app.
 For reference on AWS CDK visit: https://docs.aws.amazon.com/de_de/cdk
 
+This CDK stack requires LWA credentials and further IDs for [Alexa Skill Kit](#amazon-ask). It needs to be stored in `.cdk.json` file in user home directory as following. 
+```
+{
+  "context": {
+    "amazon-developer-smapi:vendor-id": "your-vendor-id",
+    "amazon-developer-smapi:client-id": "amzn1.application-oa2-client.123",
+    "amazon-developer-smapi:client-secret": "abc",
+    "amazon-developer-smapi:refresh-token": "ABC"
+  }
+}
+```
+
+CDK doesn't support [AWS SSO profiles](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-sso.html) in `~/.aws/config` file. As a workaround you can use [aws-sso-util](https://github.com/benkehoe/aws-sso-util)
+
+### Amazon ASK
+
+It's required to install ASK CLI to deploy an Alexa Skill Model.
+Install ASK cli and run
+```
+ask configure
+```
+Then read carefully https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ask-skill-authenticationconfiguration.html 
+Finally add your LWA credentials to `~/.cdk.json` file.
+
 ### Useful CDK commands
 
  * `cdk ls`          list all stacks in the app

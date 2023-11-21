@@ -13,13 +13,20 @@ setuptools.setup(
 
     author="4582513+bitbauer@users.noreply.github.com",
 
-    package_dir={"": "src/cdk_stack"},
-    packages=setuptools.find_packages(where="src/cdk_stack"),
+    package_dir={"": "src"},
+    packages=setuptools.find_packages(where="src"),
 
     install_requires=[
-        "aws-cdk.core==1.77.0",
-        "aws-cdk.aws_iam==1.77.0",
-        "aws-cdk.aws_lambda==1.77.0"
+        f"{x}==1.127.0" for x in
+        [
+            'aws-cdk.core',
+            'aws-cdk.alexa-ask',
+            'aws-cdk.aws-s3-assets',
+            'aws-cdk.aws-iam',
+            'aws-cdk.aws-kms',
+            'aws-cdk.aws-lambda',
+            'aws-cdk.aws-lambda-python',
+        ]
     ],
 
     python_requires=">=3.8",
