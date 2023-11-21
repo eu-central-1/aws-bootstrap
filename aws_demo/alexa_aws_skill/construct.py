@@ -1,29 +1,28 @@
-# For consistency with other languages, `cdk` is the preferred import name
-from aws_cdk import core as cdk
 from aws_cdk import (
+    Duration,
     aws_iam,
     alexa_ask,
     aws_s3_assets,
-    aws_kms,
+    # aws_kms,
     aws_lambda,
-    aws_lambda_python,
+    aws_lambda_python_alpha as aws_lambda_python,
     aws_logs,
 )
+from constructs import Construct
 
-from pathlib import Path
 
-
-class AlexaConstruct(cdk.Construct):
+class AlexaConstruct(Construct):
 
     @property
     def function(self):
         return self._function
 
-    def __init__(self, app: cdk.App, id: str, skill_id: str) -> None:
-        super().__init__(app, id)
+    def __init__(self, scope: Construct, id: str, skill_id: str) -> None:
+        super().__init__(scope, id)
 
         # Install ASK cli and run 'ask configure'
-        # Then read carefully https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ask-skill-authenticationconfiguration.html 
+        # Then read carefully following link
+        # noqa https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ask-skill-authenticationconfiguration.html
         # Finally add your LWA credeentials to ~/.cdk.json file
         # {
         #   "context": {
@@ -51,7 +50,7 @@ class AlexaConstruct(cdk.Construct):
         self._skillasset = aws_s3_assets.Asset(
             scope=self,
             id='SkillAsset',
-            path='./src/alexa_cloudstacks/assets/cloudstack_skill',
+            path='./aws_demo/alexa_aws_skill/assets/skill',
             readers=[self._skillassetrole]
         )
 
@@ -62,9 +61,10 @@ class AlexaConstruct(cdk.Construct):
                     'kms:Decrypt',
                     'kms:DescribeKey',
                 ],
-                resources=['*'
-                    # aws_kms.Alias.from_alias_name(scope=self, id='SkillAssetKmsAlias', alias_name='alias/aws/s3').key_arn
-                ],
+                resources=['*'],
+                #  resources=[aws_kms.Alias.from_alias_name(scope=self,
+                #                                           id='SkillAssetKmsAlias',
+                #                                           alias_name='alias/aws/s3').key_arn],
             )
         )
 
@@ -72,8 +72,13 @@ class AlexaConstruct(cdk.Construct):
         self._function = aws_lambda_python.PythonFunction(
             scope=self,
             id='Lambda',
-            entry='./src/alexa_cloudstacks/aws_lambdas/cloudstacks_skill',  # Path to function code
-            description='Alexa Cloud Stacks Intents',
+            entry='./aws_demo/alexa_aws_skill/assets/lambda',  # Path to function code
+            description='Alexa AWS Command Intents',
+            # bundling=dict(
+            #     environment=dict(
+            #         POETRY_VIRTUALENVS_IN_PROJECT= True,
+            #     ),
+            # ),
             environment=dict(
                 POWERTOOLS_SERVICE_NAME=id,
                 LOG_LEVEL='INFO',
@@ -81,11 +86,11 @@ class AlexaConstruct(cdk.Construct):
             handler='handler',
             index='handler.py',
             log_retention=aws_logs.RetentionDays.ONE_WEEK,
-            max_event_age=cdk.Duration.minutes(1),
+            max_event_age=Duration.minutes(1),
             retry_attempts=0,
-            runtime=aws_lambda.Runtime.PYTHON_3_8,
+            runtime=aws_lambda.Runtime.PYTHON_3_9,
             memory_size=1024,
-            timeout=cdk.Duration.seconds(120),
+            timeout=Duration.seconds(120),
             tracing=aws_lambda.Tracing.DISABLED,
         )
 
@@ -101,7 +106,7 @@ class AlexaConstruct(cdk.Construct):
             s3_bucket=self._skillasset.s3_bucket_name,
             s3_key=self._skillasset.s3_object_key,
             overrides=alexa_ask.CfnSkill.OverridesProperty(
-                manifest={'apis': {'custom': {'endpoint': {'uri': self._function.function_arn }, }, }, }
+                manifest={'apis': {'custom': {'endpoint': {'uri': self._function.function_arn}, }, }, }
             ),
             s3_bucket_role=self._skillassetrole.role_arn
         )
@@ -115,8 +120,8 @@ class AlexaConstruct(cdk.Construct):
         )
 
         # get access to the Level 1 Cfn resource
-        self._cfn_function: aws_lambda.CfnFunction = self._function.node.default_child
-        self._skill.add_depends_on(self._cfn_function)
+        self._cfn_function: aws_lambda.CfnFunction = self._function.node.default_child  # type: ignore [no-redef]
+        self._skill.add_dependency(self._cfn_function)  # type: ignore [no-redef]
 
         # allow the Alexa service to invoke the fulfillment Lambda
         # TODO Inside lambda is needed to adjust permissions to new skill ID afterwards

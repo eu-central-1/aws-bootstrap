@@ -1,14 +1,15 @@
-import unittest
+import pytest
+from aws_cdk import App
+from aws_cdk.assertions import Template
 
-from aws_cdk import core
-from aws_bootstrap.init_cloudstacks_skill import AlexaConstruct
+from aws_demo.main import MyDemoStack
 
-class TestAlexaConstruct(unittest.TestCase):
+@pytest.fixture(scope='module')
+def template():
+  app = App()
+  stack = AlexaDemoStack(app, "demo-stack-test")
+  template = Template.from_stack(stack)
+  yield template
 
-    def setUp(self):
-        self.app = core.App()
-        self.stack = core.Stack(self.app, "teststack")
-
-    def test_alexa_function(self):
-        test_alexa_function = AlexaConstruct(self.stack, "testalexa", skill_id="amzn1.ask.skill.your-skill-guid-number")
-        assert test_alexa_function
+def test_no_buckets_found(template):
+  template.resource_count_is("AWS::S3::Bucket", 0)

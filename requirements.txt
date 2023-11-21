@@ -1,6 +1,4 @@
--e .
-boto3
-botocore
-docker
-ask-sdk-core>=1.14.0
-pytest
+ask-sdk-core>=1.14.0, <2.0.0
+aws-cdk-lib>=2.68.0, <3.0.0
+aws-cdk.aws-lambda-python-alpha
+constructs>=10.0.5, <11.0.0

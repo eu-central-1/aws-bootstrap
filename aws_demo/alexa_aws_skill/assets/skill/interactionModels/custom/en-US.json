@@ -1,0 +1,71 @@
+{
+  "interactionModel": {
+    "languageModel": {
+      "invocationName": "a. w. s. demo",
+      "intents": [
+        {
+          "name": "AMAZON.CancelIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.HelpIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.StopIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.NavigateHomeIntent",
+          "samples": []
+        },
+        {
+          "name": "GetNewFactHandler",
+          "slots": [],
+          "samples": [
+            "to tell me the status of my a. w. s. cloud formation stacks",
+            "to tell me the status of the a. w. s. cloud formation stacks",
+            "to tell me the status of my cloud formation stacks",
+            "to tell me the status of the cloud formation stacks",
+            "to tell me the status of my a. w. s. cloud stacks",
+            "to tell me the status of the a. w. s. cloud stacks",
+            "to tell me the status of my cloud stacks",
+            "to tell me the status of the cloud stacks",
+            "to tell me the status of my a. w. s. stacks",
+            "to tell me the status of the a. w. s. stacks",
+            "to tell me the status of my stacks",
+            "to tell me the status of the stacks",
+            "to tell me the status",
+            "what is the status of my a. w. s. cloud formation stacks",
+            "what is the status of the a. w. s. cloud formation stacks",
+            "what is the status of my a. w. s. cloud stacks",
+            "what is the status of the a. w. s. cloud stacks",
+            "what is the status of my a. w. s. stacks",
+            "what is the status of the a. w. s. stacks",
+            "what is the status of my cloud formation stacks",
+            "what is the status of the cloud formation stacks",
+            "what is the status of my cloud stacks",
+            "what is the status of the cloud stacks",
+            "what is the status of my stacks",
+            "what is the status of the stacks",            
+            "what is the status of a. w. s. cloud formation",
+            "what is the status of cloud formation",
+            "what is my a. w. s. cloud formation status",
+            "what is the a. w. s. cloud formation status",
+            "what is my a. w. s. cloud stacks status",
+            "what is the a. w. s. cloud stacks status",
+            "what is my a. w. s. status",
+            "what is the a. w. s. status",
+            "what is my cloud status",
+            "what is the cloud status",
+            "what is my status",
+            "what is the status",
+            "status"
+          ]
+        }
+      ],
+      "types": []
+    }
+  },
+  "version": "1"
+}

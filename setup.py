@@ -4,30 +4,14 @@ with open("README.md") as fp:
     long_description = fp.read()
 
 setuptools.setup(
-    name="aws-bootstrap",
-    version="0.2.0-alpha.0",
+    name="aws-demo",
+    version="0.3.0-alpha.0",
 
-    description="Python AWS CDK for bootstrapping initial payer account for multi-account environment",
+    description="Python AWS CDK solution for voice reports about your AWS account",
     long_description=long_description,
     long_description_content_type="text/markdown",
 
     author="4582513+bitbauer@users.noreply.github.com",
-
-    package_dir={"": "src"},
-    packages=setuptools.find_packages(where="src"),
-
-    install_requires=[
-        f"{x}==1.127.0" for x in
-        [
-            'aws-cdk.core',
-            'aws-cdk.alexa-ask',
-            'aws-cdk.aws-s3-assets',
-            'aws-cdk.aws-iam',
-            'aws-cdk.aws-kms',
-            'aws-cdk.aws-lambda',
-            'aws-cdk.aws-lambda-python',
-        ]
-    ],
 
     python_requires=">=3.8",
 
@@ -40,9 +24,9 @@ setuptools.setup(
 
         "Programming Language :: JavaScript",
         "Programming Language :: Python :: 3 :: Only",
-        "Programming Language :: Python :: 3.6",
-        "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: 3.10",
 
         "Topic :: Software Development :: Code Generators",
         "Topic :: Utilities",

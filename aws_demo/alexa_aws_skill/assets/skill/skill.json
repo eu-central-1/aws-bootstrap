@@ -3,7 +3,7 @@
     "apis": {
       "custom": {
         "endpoint": {
-          "uri": "arn:aws:lambda:eu-west-1:123456789012:function:alexacloud-dev-handler"
+          "uri": "arn:aws:lambda:eu-west-1:123456789012:function:alexa-aws-demo-handler"
         },
         "interfaces": []
       }
@@ -11,8 +11,11 @@
     "manifestVersion": "1.0",
     "publishingInformation": {
       "locales": {
+        "en-US": {
+          "name": "a. w. s. demo"
+        },
         "de-DE": {
-          "name": "a. w. s. cloud"
+          "name": "A. W. S. Demo"
         }
       }
     }

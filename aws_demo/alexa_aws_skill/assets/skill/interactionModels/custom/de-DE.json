@@ -1,0 +1,71 @@
+{
+  "interactionModel": {
+    "languageModel": {
+      "invocationName": "a. w. s. demo",
+      "intents": [
+        {
+          "name": "AMAZON.CancelIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.HelpIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.StopIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.NavigateHomeIntent",
+          "samples": []
+        },
+        {
+          "name": "GetNewFactHandler",
+          "slots": [],
+          "samples": [
+            "Sage mir den Status meiner A. W. S. Cloud Formation Stacks",
+            "Sage mir den Status der A. W. S. Cloud Formation Stacks",
+            "Sage mir den Status meiner Cloud Formation Stacks",
+            "Sage mir den Status der Cloud Formation Stacks",
+            "Sage mir den Status meiner A. W. S. Cloud Stacks",
+            "Sage mir den Status der A. W. S. Cloud Stacks",
+            "Sage mir den Status meiner Cloud Stacks",
+            "Sage mir den Status der Cloud Stacks",
+            "Sage mir den Status meiner A. W. S. Stacks",
+            "Sage mir den Status der A. W. S. Stacks",
+            "Sage mir den Status meiner Stacks",
+            "Sage mir den Status der Stacks",
+            "Sage mir den Status",
+            "Wie ist der Status meiner A. W. S. Cloud Formation Stacks",
+            "Wie ist der Status der A. W. S. Cloud Formation Stacks",
+            "Wie ist der Status meiner A. W. S. Cloud Stacks",
+            "Wie ist der Status der A. W. S. Cloud Stacks",
+            "Wie ist der Status meiner A. W. S. Stacks",
+            "Wie ist der Status der A. W. S. Stacks",
+            "Wie ist der Status meiner Cloud Formation Stacks",
+            "Wie ist der Status der Cloud Formation Stacks",
+            "Wie ist der Status meiner Cloud Stacks",
+            "Wie ist der Status der Cloud Stacks",
+            "Wie ist der Status meiner Stacks",
+            "Wie ist der Status der Stacks",
+            "Wie ist mein A. W. S. Cloud Formation Status",
+            "Wie ist der A. W. S. Cloud Formation Status",
+            "Wie ist mein A. W. S. Cloud Status",
+            "Wie ist der A. W. S. Cloud Status",  
+            "Wie ist mein A. W. S. Status",
+            "Wie ist der A. W. S. Status",                        
+            "Wie ist mein Cloud Formation Status",
+            "Wie ist der Cloud Formation Status",
+            "Wie ist mein Cloud Status",
+            "Wie ist der Cloud Status",
+            "Wie ist mein Status",
+            "Wie ist der Status",
+            "Status"
+          ]
+        }
+      ],
+      "types": []
+    }
+  },
+  "version": "1"
+}
